@@ -1,27 +1,27 @@
-interface ILogManager {
+export interface ILogManager {
     logInfoMsg(msg: string): Promise<void>
     logError(e: Error): Promise<void>
 }
 
-type ContractRecordVal = {
+export type ContractRecordVal = {
     id: string
     isResponsibleManagerHire: boolean
     defaultContactWay: string
 }
 
-interface IContractManager {
+export interface IContractManager {
     getContractsExpiredLaterThenDate(date: Date): Promise<ContractRecordVal[]>
     updateProlongationOfferDateForContracts(contactids: string[]): Promise<void>
 }
 
-interface IContractProlongationManager {
+export interface IContractProlongationManager {
     offerContractsProlongationDefaultWay(
         contractIds: string[],
         contactWay: string | "default"
     ): Promise<void>
 }
 
-class ContractReviewService {
+export class ContractReviewService {
     private logManager: ILogManager
     private contractManager: IContractManager
     private contractsProlongationManager: IContractProlongationManager
